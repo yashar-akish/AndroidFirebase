@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     EditText email, password;
-    Button signIn, signUp, forgot;
+    Button signIn, signUp, forgot, phone;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         signIn = findViewById(R.id.signInBtn);
         signUp = findViewById(R.id.signUpBtn);
         forgot = findViewById(R.id.resetBtn);
+        phone = findViewById(R.id.phoneSignBtn);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -55,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ForgetActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PhoneSignActivity.class);
                 startActivity(intent);
             }
         });

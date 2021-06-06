@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidFirebase">
-        <activity android:name=".ForgetActivity"></activity>
+        <activity android:name=".PhoneSignActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ForgetActivity" />
         <activity android:name=".main_menu" />
         <activity
             android:name=".SignUpActivity"
