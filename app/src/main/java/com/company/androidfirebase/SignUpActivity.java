@@ -1,71 +1,65 @@
 package com.company.androidfirebase;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     EditText email, password;
-    Button signIn, signUp;
+    Button singUp;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_up);
+
+        getSupportActionBar().setTitle("Sign Up");
 
         email = findViewById(R.id.emailEt);
         password = findViewById(R.id.paswwordEt);
-        signIn = findViewById(R.id.signInBtn);
-        signUp = findViewById(R.id.signUpBtn);
+        singUp = findViewById(R.id.signBtn);
 
-        signIn.setOnClickListener(new View.OnClickListener() {
+        singUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String userEmail = email.getText().toString();
                 String userPassword = password.getText().toString();
-                signInFirebase(userEmail, userPassword);
-            }
-        });
-
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
-                startActivity(intent);
+                signUpFirebase(userEmail, userPassword);
             }
         });
     }
 
-    public void signInFirebase(String userEmail, String userPassword){
-        auth.signInWithEmailAndPassword(userEmail, userPassword)
+    public void signUpFirebase(String userEmail, String userPassword) {
+        auth.createUserWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Intent i = new Intent(MainActivity.this, main_menu.class);
-                            startActivity(i);
-                            finish();
+                            Toast.makeText(SignUpActivity.this, "Your account is created successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this, "Email or Password is not correct!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "SignUp has failed!!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                            startActivity(intent);
                         }
+                        finish();
                     }
                 });
     }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".SignUpActivity">
 
     <EditText
         android:id="@+id/emailEt"
@@ -36,20 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/emailEt" />
 
     <Button
-        android:id="@+id/signInBtn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="Sing In"
-        android:textAllCaps="false"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paswwordEt" />
-
-    <Button
-        android:id="@+id/signUpBtn"
+        android:id="@+id/signBtn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -59,5 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/paswwordEt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
