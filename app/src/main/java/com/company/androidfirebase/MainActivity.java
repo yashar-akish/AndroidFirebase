@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     EditText email, password;
-    Button signIn, signUp;
+    Button signIn, signUp, forgot;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.paswwordEt);
         signIn = findViewById(R.id.signInBtn);
         signUp = findViewById(R.id.signUpBtn);
+        forgot = findViewById(R.id.resetBtn);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ForgetActivity.class);
                 startActivity(intent);
             }
         });
